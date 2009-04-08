@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Generador de escalas de notas</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link href="escala.css" media="screen" rel="stylesheet" type="text/css">
+</head>
+<body>
+<h1>Generador de escalas de notas</h1>
+<table>
+<tr>
+<td valign="top" border="10" width="200px">
+<form method="get">
+<table>
+  <tr>
+    <td>Nota mínima</td>
+    <td><input size="5" type="text" name="m" value="<%=params[:m] %>" /></td>
+  </tr>
+  <tr>
+    <td>Exigencia</td>
+    <td><input size="5"  type="text" name="e" value="<%=params[:e] %>"  /></td>
+  </tr>
+  <tr>
+    <td>Puntaje máximo</td>
+    <td><input size="5" type="text" name="p" value="<%=params[:p] %>"  /></td>
+  </tr>
+  <tr>
+    <td>Paso</td>
+    <td><input size="5" type="text" name="s" value="<%=params[:s] %>"  /></td>
+  </tr>
+</table>
+<input type="submit" value="Generar tabla"/>
+</form>
+<font size="-3"> <p>Creado por Juan Ignacio Pumarino R.</p> <p>Comentarios: jipumarino@gmail.com</p> <p>Powered by <a target="_blank" href="http://sinatra.rubyforge.org/">Sinatra</a>.</p></font>
+</td>
+<td valign="top">
+<table border="1">
+<tr><th>Puntaje</th><th>Nota</th></tr>
+<% @notas.each do |n| %>
+<tr><td><%= n.first %></td><td
+
+<% if (n.last*10).round/10.0 < 4.0 %>
+class="rojo"
+<% end %>
+
+><%= (n.last*10).round/10.0 %></td></tr>
+<% if @notas.index(n) % 20 == 19 %>
+  </table>
+  </td>
+  <td valign="top">
+  <table border="1">
+  <tr><th>Puntaje</th><th>Nota</th></tr>
+<% end %>
+<% end %>
+</table>
+</td>
+</tr>
+</body>
+</html>
