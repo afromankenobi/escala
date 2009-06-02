@@ -29,6 +29,11 @@ get '/' do
   erb :escala
 end
 
+get '/stats' do
+  @accesos = contar_accesos
+  erb :accesos
+end
+
 private
 
 def nota(ptje) 
@@ -38,4 +43,23 @@ def nota(ptje)
     nota=3*(ptje-params[:e]*params[:p])/(params[:p]*(1-params[:e]))+4
   end
   return nota
+end
+
+
+def contar_accesos
+  count = {}
+
+  File::open('access.log', "r") do |f|
+    f.read.split("\n").each do |l|
+      l=l.gsub(/.*\[(.*)-..T.*\].*/,'\1')
+      if l=~/\d{4}-\d{2}/
+        if count[l].nil?
+          count[l] = 1
+        else
+          count[l]+=1
+        end
+      end
+    end
+    return count.sort
+  end
 end
