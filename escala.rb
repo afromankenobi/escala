@@ -20,7 +20,7 @@ module Rack
 end
 
 
-get '/' do
+get '/?' do
   Logger.new('access.log').info("Remote IP:#{request.ip}, URL:#{request.url}")
   default_params = {:e => 0.6, :p => 10, :s => 1, :m => 2}
   default_params.each{|k,v| params[k] = v if (!params[k] or params[k].empty?)}
@@ -51,15 +51,15 @@ def contar_accesos
 
   File::open('access.log', "r") do |f|
     f.read.split("\n").each do |l|
-      l=l.gsub(/.*\[(.*)-..T.*\].*/,'\1')
-      if l=~/\d{4}-\d{2}/
-        if count[l].nil?
-          count[l] = 1
-        else
-          count[l]+=1
-        end
+    l=l.gsub(/.*\[(.*)-..T.*\].*/,'\1')
+    if l=~/\d{4}-\d{2}/
+      if count[l].nil?
+        count[l] = 1
+      else
+        count[l]+=1
       end
     end
-    return count.sort
+  end
+  return count.sort
   end
 end
