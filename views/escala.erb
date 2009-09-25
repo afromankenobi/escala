@@ -1,58 +1,61 @@
 <html>
 <head>
-<title>Generador de escala de notas</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<link href="escala/escala.css" media="screen" rel="stylesheet" type="text/css">
+	<title>Generador de escala de notas</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link href="escala.css" media="screen" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h1>Generador de escala de notas</h1>
-<table>
-<tr>
-<td valign="top" border="10" width="200px">
-<form method="get">
-<table>
-  <tr>
-    <td>Nota mínima</td>
-    <td><input size="5" type="text" name="m" value="<%=params[:m] %>" /></td>
-  </tr>
-  <tr>
-    <td>Exigencia</td>
-    <td><input size="5"  type="text" name="e" value="<%=params[:e] %>"  /></td>
-  </tr>
-  <tr>
-    <td>Puntaje máximo</td>
-    <td><input size="5" type="text" name="p" value="<%=params[:p] %>"  /></td>
-  </tr>
-  <tr>
-    <td>Paso</td>
-    <td><input size="5" type="text" name="s" value="<%=params[:s] %>"  /></td>
-  </tr>
-</table>
-<input type="submit" value="Generar tabla"/>
-</form>
-<font size="-3"> <p>Creado por <a href="http://pumarino.org/">Juan Ignacio Pumarino</a>.</p> <p>Comentarios: jipumarino@gmail.com</p> <p>Powered by <a target="_blank" href="http://sinatra.rubyforge.org/">Sinatra</a>.</p></font>
-</td>
-<td valign="top">
-<table border="1">
-<tr><th>Puntaje</th><th>Nota</th></tr>
-<% @notas.each do |n| %>
-<tr><td><%= n.first %></td><td
+	<div id="header">
+		<div id="title">Generador de escala de notas</div> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+		<form id="formulario" method="get">
+			<div class="field">Nota mínima	<input size="4" type="text" name="m" value="<%=params[:m] %>" /></div>
+			<div class="field">Exigencia	<input size="4"  type="text" name="e" value="<%=params[:e] %>"  /> %</div>
+			<div class="field">Puntaje máximo <input size="5" type="text" name="p" value="<%=params[:p] %>"  /></div>
+			<div class="field">Paso 
+				<!-- <select name="s">
+					<%%>
+				  <option value="volvo">Volvo</option>
+				  <option value="saab">Saab</option>
+				  <option value="mercedes">Mercedes</option>
+				  <option value="audi">Audi</option>
+				</select> --><input size="4" type="text" name="s" value="<%=params[:s] %>"  /></div>
+			<div class="field"><input type="submit" value="Generar tabla"/></div>
+		</form>
 
-<% if (n.last*10).round/10.0 < 4.0 %>
-class="rojo"
-<% end %>
+	</div>
+<table>
+	<tr>
+	<% @notas.each do |nota|%>
+	<td valign="top">
+	<div id="escala">
+		<table>
+			<tr><th>Puntaje</th><th>Nota</th></tr>
+			<% nota.each do |n| %>
+			<tr>
+				<td><%= n.first %></td>
+				<td
 
-><%= (n.last*10).round/10.0 %></td></tr>
-<% if @notas.index(n) % 20 == 19 %>
-  </table>
-  </td>
-  <td valign="top">
-  <table border="1">
-  <tr><th>Puntaje</th><th>Nota</th></tr>
-<% end %>
-<% end %>
-</table>
-</td>
-</tr>
-</body>
-</html>
+				<% if (n.last*10).round/10.0 < 4.0 %>
+				class="rojo"
+				<% end %>
+
+				>
+				<%= (n.last*10).round/10.0 %>
+				</td>
+			</tr>
+				<% end %>
+			</table>
+
+		</div>
+		</td>
+		<% end %>
+		</tr>
+		</table>
+
+		<div id="footer">
+			Creado por <a href="http://pumarino.org/">Juan Ignacio Pumarino</a> utilizando <a target="_blank" href="http://www.sinatrarb.com">Sinatra</a> |
+			Comentarios: jipumarino@gmail.com
+		</div>
+
+	</body>
+	</html>

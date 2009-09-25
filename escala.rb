@@ -19,13 +19,31 @@ module Rack
   end
 end
 
+class Array
+  def chunk(size=2)
+    chunks = []
+    start = 0
+    1.upto((self.length/size).ceil+1) do |i|
+      last = start+size-1
+      chunks << self[start..last] unless self[start..last].empty?
+      start = last+1
+    end
+    chunks
+  end
+end
+
 
 get '/?' do
   Logger.new('access.log').info("Remote IP:#{request.ip}, URL:#{request.url}")
-  default_params = {:e => 0.6, :p => 10, :s => 1, :m => 2}
+  default_params = {:e => 60 , :p => 10, :s => 1, :m => 2}
   default_params.each{|k,v| params[k] = v if (!params[k] or params[k].empty?)}
-  params.each{|k,v| params[k]=v.to_f}
+  params.each{|k,v| params[k]=v.gsub(",",".").to_f}
+  params[:e] = params[:e]/100.0
+  params[:s] = 1.0 if params[:s] == 0
   @notas = (0..params[:p]/params[:s]).map{|p| [p*params[:s],nota(p*params[:s])]}
+  @notas = @notas.chunk(15)
+
+  params[:e] = params[:e]*100
   erb :escala
 end
 
