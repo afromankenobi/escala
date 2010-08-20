@@ -4,21 +4,24 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<link href="escala.css" media="screen" rel="stylesheet" type="text/css">
 </head>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-11840444-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
 <body>
 	<div id="header">
-		<div id="title">Generador de escala de notas</div> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+		<h1>Generador de escala de notas</h1> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 		<form id="formulario" method="get">
 			<div class="field">Nota mínima	<input size="4" type="text" name="m" value="<%=params[:m] %>" /></div>
 			<div class="field">Exigencia	<input size="4"  type="text" name="e" value="<%=params[:e] %>"  /> %</div>
 			<div class="field">Puntaje máximo <input size="5" type="text" name="p" value="<%=params[:p] %>"  /></div>
 			<div class="field">Paso 
-				<!-- <select name="s">
-					<%%>
-				  <option value="volvo">Volvo</option>
-				  <option value="saab">Saab</option>
-				  <option value="mercedes">Mercedes</option>
-				  <option value="audi">Audi</option>
-				</select> --><input size="4" type="text" name="s" value="<%=params[:s] %>"  /></div>
+				<input size="4" type="text" name="s" value="<%=params[:s] %>"  /></div>
 			<div class="field"><input type="submit" value="Generar tabla"/></div>
 		</form>
 
@@ -53,8 +56,7 @@
 		</table>
 
 		<div id="footer">
-			Creado por <a href="http://pumarino.org/">Juan Ignacio Pumarino</a> utilizando <a target="_blank" href="http://www.sinatrarb.com">Sinatra</a> |
-			Comentarios: jipumarino@gmail.com
+			Creado por <a href="http://pumarino.org/">Juan Ignacio Pumarino</a> utilizando <a target="_blank" href="http://www.sinatrarb.com">Sinatra</a> 
 		</div>
 
 	</body>

@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'sinatra'
-require 'logger'
 
 #e exigencia
 #p puntaje máximo
@@ -32,14 +31,18 @@ class Array
   end
 end
 
+get '' do
+redirect 'escala/'
+end
 
-get '/?' do
-  Logger.new('access.log').info("Remote IP:#{request.ip}, URL:#{request.url}")
+get '/' do
   default_params = {:e => 60 , :p => 10, :s => 1, :m => 2}
   default_params.each{|k,v| params[k] = v if (!params[k] or params[k].empty?)}
-  params.each{|k,v| params[k]=v.gsub(",",".").to_f}
+  params.each{|k,v| params[k]=v.to_s.gsub(",",".").to_f}
   params[:e] = params[:e]/100.0
+  params[:p] = 1000 if params[:p] > 1000
   params[:s] = 1.0 if params[:s] == 0
+  params[:s] = 0.01 if params[:s] < 0.01
   @notas = (0..params[:p]/params[:s]).map{|p| [p*params[:s],nota(p*params[:s])]}
   @notas = @notas.chunk(15)
 

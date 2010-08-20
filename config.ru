@@ -2,11 +2,9 @@
 require 'rubygems'
 require 'sinatra'
  
-Sinatra::Application.default_options.merge!(
-  :run => false,
-  :env => :production
-)
- 
-require 'escala.rb'
-run Sinatra.application
+set :env,  :production
+disable :run
 
+require 'escala.rb'
+
+run Sinatra::Application

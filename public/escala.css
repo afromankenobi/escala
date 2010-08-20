@@ -59,6 +59,13 @@ body
 
 a {color:#bbb; text-decoration:none;}
 
+h1
+{
+  display:inline;
+  font-size:18px;
+  font-weight:normal;
+}
+
 #title
 {
   display:inline;
