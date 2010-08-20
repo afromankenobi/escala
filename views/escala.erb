@@ -17,11 +17,13 @@ pageTracker._trackPageview();
 	<div id="header">
 		<h1>Generador de escala de notas</h1> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 		<form id="formulario" method="get">
-			<div class="field">Nota mínima	<input size="4" type="text" name="m" value="<%=params[:m] %>" /></div>
-			<div class="field">Exigencia	<input size="4"  type="text" name="e" value="<%=params[:e] %>"  /> %</div>
-			<div class="field">Puntaje máximo <input size="5" type="text" name="p" value="<%=params[:p] %>"  /></div>
+			<div class="field">Nota mín.	<input size="4" type="text" name="nmin" value="<%=params[:nmin] %>" /></div>
+			<div class="field">Nota máx.	<input size="4" type="text" name="nmax" value="<%=params[:nmax] %>" /></div>
+			<div class="field">Nota aprobación	<input size="4" type="text" name="napr" value="<%=params[:napr] %>" /></div>
+			<div class="field">Exigencia	<input size="4"  type="text" name="exig" value="<%=params[:exig] %>"  /> %</div>
+			<div class="field">Ptje. máximo <input size="5" type="text" name="pmax" value="<%=params[:pmax] %>"  /></div>
 			<div class="field">Paso 
-				<input size="4" type="text" name="s" value="<%=params[:s] %>"  /></div>
+				<input size="4" type="text" name="paso" value="<%=params[:paso] %>"  /></div>
 			<div class="field"><input type="submit" value="Generar tabla"/></div>
 		</form>
 
@@ -38,7 +40,7 @@ pageTracker._trackPageview();
 				<td><%= n.first %></td>
 				<td
 
-				<% if (n.last*10).round/10.0 < 4.0 %>
+				<% if (n.last*10).round/10.0 < params[:napr] %>
 				class="rojo"
 				<% end %>
 

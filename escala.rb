@@ -36,17 +36,17 @@ redirect 'escala/'
 end
 
 get '/' do
-  default_params = {:e => 60 , :p => 10, :s => 1, :m => 2}
+  default_params = {:exig => 60 , :pmax => 10, :paso => 1, :nmin => 2, :nmax => 7, :napr => 4}
   default_params.each{|k,v| params[k] = v if (!params[k] or params[k].empty?)}
   params.each{|k,v| params[k]=v.to_s.gsub(",",".").to_f}
-  params[:e] = params[:e]/100.0
-  params[:p] = 1000 if params[:p] > 1000
-  params[:s] = 1.0 if params[:s] == 0
-  params[:s] = 0.01 if params[:s] < 0.01
-  @notas = (0..params[:p]/params[:s]).map{|p| [p*params[:s],nota(p*params[:s])]}
+  params[:exig] = params[:exig]/100.0
+  params[:pmax] = 1000 if params[:pmax] > 1000
+  params[:paso] = 1.0 if params[:paso] == 0
+  params[:paso] = 0.01 if params[:paso] < 0.01
+  @notas = (0..params[:pmax]/params[:paso]).map{|p| [p*params[:paso],nota(p*params[:paso])]}
   @notas = @notas.chunk(15)
 
-  params[:e] = params[:e]*100
+  params[:exig] = params[:exig]*100
   erb :escala
 end
 
@@ -58,10 +58,10 @@ end
 private
 
 def nota(ptje) 
-  if(ptje<params[:e]*params[:p])
-    nota=(4-params[:m])*ptje/(params[:e]*params[:p])+params[:m] 
+  if(ptje<params[:exig]*params[:pmax])
+    nota=(params[:napr]-params[:nmin])*ptje/(params[:exig]*params[:pmax])+params[:nmin] 
   else
-    nota=3*(ptje-params[:e]*params[:p])/(params[:p]*(1-params[:e]))+4
+    nota=(params[:nmax]-params[:napr])*(ptje-params[:exig]*params[:pmax])/(params[:pmax]*(1-params[:exig]))+params[:napr]
   end
   return nota
 end
