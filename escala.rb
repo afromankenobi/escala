@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'newrelic_rpm'
 require 'sinatra'
 
 #e exigencia
