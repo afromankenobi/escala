@@ -15,7 +15,28 @@ var pageTracker = _gat._getTracker("UA-11840444-3");
 pageTracker._trackPageview();
 } catch(err) {}</script>
 <body>
+	<div id="fb-root"></div>
+	<script>
+		// Facebook
+		(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
 
+		// Twitter
+		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+		// Google+
+		window.___gcfg = {lang: 'es'};
+	  (function() {
+	    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	    po.src = 'https://apis.google.com/js/plusone.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	  })();
+	</script>
 	<div id="header">
 		<h1>Generador de escala de notas</h1> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 		<form id="formulario" method="get">
@@ -68,6 +89,9 @@ pageTracker._trackPageview();
           <li>Paso: cantidad de puntos en que se va incrementando la escala (de 1,0 en 1,0, 0,5 en 0,5, etc.)</li>
         </ul>
 		<div id="footer">
+			<div class="fb-like" data-href="http://escaladenotas.cl" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
+			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://escaladenotas.cl" data-lang="es">Twittear</a>
+			<div class="g-plusone" data-href="http://escaladenotas.cl" data-size="medium"></div>
       <p>Creado por <a href="http://pumarino.org/">Juan Ignacio Pumarino</a> utilizando <a target="_blank" href="http://www.sinatrarb.com">Sinatra</a></p> 
 		</div>
 

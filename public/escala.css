@@ -16,7 +16,15 @@
 
 #footer
 {
-  text-align: center;
+  padding:20px 30px;
+}
+
+#footer p {
+  float: right;
+  margin:0;
+  padding:0;
+  display: block;
+  margin-top: 5px;
 }
 
 #escala
@@ -78,4 +86,8 @@ h1
   right:0;
   position:relative;
 
+}
+
+.fb-like, .twitter-share-button, .g-plusone, #___plusone_0 {
+  float:left;
 }
